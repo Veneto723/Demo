@@ -11,7 +11,6 @@ namespace cards.testCards {
             base.OnUse(source, target);
             // 获取玩家能造成的总伤害
             // TODO 伤害增益百分比
-            // TODO 重写行为逻辑
             var damage = source.Weapon.Damage + Damage; // 角色攻击力+卡牌伤害
             AddToBot(new DamageAction(source, target, this, damage));
             // 执行相应动画
