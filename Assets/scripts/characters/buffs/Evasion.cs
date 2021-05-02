@@ -1,12 +1,14 @@
 ﻿using utils;
 
 namespace characters.buffs {
-    public class Combo : Buff {
+    public class Evasion : Buff {
 
-        public Combo() : base() { }
+        public Evasion() { }
 
-        public Combo(int amount, AbstractCharacter source, AbstractCharacter target) : 
-            base("Combo", "", BuffType.Buff, amount, InfiniteDuration, source, target) { }
+        public Evasion(AbstractCharacter source, AbstractCharacter target, int amount) 
+            : base("Evasion", "evade next attack", BuffType.Buff, amount, InfiniteDuration, source, target) { }
+
+
         public override void OnUse(AbstractCharacter source, AbstractCharacter target) { }
 
         public override void Escalate(AbstractCharacter source, AbstractCharacter target, int amount, int duration) {

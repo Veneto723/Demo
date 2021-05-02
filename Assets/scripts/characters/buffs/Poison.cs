@@ -1,8 +1,6 @@
-﻿using characters;
-using characters.buffs;
-using utils;
+﻿using utils;
 
-namespace Blade.characters.buffs {
+namespace characters.buffs {
     public class Poison : Buff {
 
         public Poison() : base() { }

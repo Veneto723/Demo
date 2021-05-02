@@ -1,7 +1,4 @@
 ﻿using System.Collections.Generic;
-using Blade.cards;
-using Blade.characters;
-using Blade.characters.buffs;
 using cards;
 using characters;
 using characters.buffs;

@@ -15,5 +15,6 @@ namespace cards.testCards {
             AddToBot(new DamageAction(source, target, this, damage));
             // 执行相应动画
         }
+
     }
 }
