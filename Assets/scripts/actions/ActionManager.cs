@@ -12,10 +12,15 @@ namespace actions {
         }
 
         public void AddToBottom(AbstractAction action) {
-            _actions.Add(action);
+            if (action is DamageAction) {
+                if (action.Target.CanCounter(action.SourceCard)) {
+                    // TODO 进入反击阶段
+                }
+            }
+            action.OnAct();
         }
         
-        public void AddAToTop(AbstractAction action) {
+        public void AddToTop(AbstractAction action) {
             _actions.Insert(0, action);
         }
 

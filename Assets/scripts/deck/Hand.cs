@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Blade.cards.weapons;
 using cards;
 using cards.weapons;
@@ -22,6 +23,10 @@ namespace deck {
                 base.Add(index, card);
                 card.OnDraw(Owner, card.Target);
             }
+        }
+
+        public bool Obtain(AbstractCard.CardModifier modifier) {
+            return _deck.Any(card => card.HasModifier(modifier));
         }
     }
 }

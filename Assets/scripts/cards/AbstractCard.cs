@@ -8,8 +8,6 @@ using utils;
 
 namespace cards {
     public abstract class AbstractCard {
-        public const int And = 0x7;
-        public const int Or = 0x8;
 
         private int _baseCost;
         private int _baseDamage;
@@ -56,7 +54,7 @@ namespace cards {
         public string Img { get; }
         public string Description { get; }
         public CardType Type { get; }
-        public List<CardModifier> Modifiers { get; }
+        public CardModifier Modifier { get; }
         public CardRarity Rarity { get; }
         public CardTarget Target { get; }
 
@@ -65,7 +63,7 @@ namespace cards {
         /// 攻击类卡牌使用构造函数
         /// </summary>
         protected AbstractCard(string name, int baseCost, int baseDamage, int baseMagicNumber, int cost,
-            int damage, int magicNumber, string img, string description, CardType type, List<CardModifier> modifiers,
+            int damage, int magicNumber, string img, string description, CardType type, CardModifier modifier,
             CardRarity rarity, CardTarget target) {
             Name = name ?? throw new ArgumentNullException(nameof(name));
             BaseCost = baseCost;
@@ -77,7 +75,7 @@ namespace cards {
             Img = img ?? throw new ArgumentNullException(nameof(img));
             Description = description ?? throw new ArgumentNullException(nameof(description));
             Type = type;
-            Modifiers = modifiers ?? throw new ArgumentNullException(nameof(modifiers));
+            Modifier = modifier;
             Rarity = rarity;
             Target = target;
         }
@@ -118,7 +116,7 @@ namespace cards {
         /// </summary>
         /// <param name="source">发起方</param>
         /// <param name="target">受影响对象</param>
-        protected virtual void AfterUse(AbstractCharacter source, AbstractCharacter target) { }
+        public virtual void AfterUse(AbstractCharacter source, AbstractCharacter target) { }
 
         /// <summary>
         /// 卡牌送墓触发效果
@@ -137,41 +135,17 @@ namespace cards {
             return Cost <= source.Cost;
         }
 
+        public bool HasModifier(IEnumerable<CardModifier> modifiers) {
+            return modifiers.Any(modifier => modifier == Modifier);
+        }
+
         /// <summary>
-        /// 判断该卡牌是否包含<code>modifiers</code>中的相应修饰符
+        /// 判断卡牌是否含有该Modifier
         /// </summary>
-        /// <param name="modifiers">修饰符集</param>
-        /// <param name="logic">包含逻辑：And, Or</param>
-        /// <returns>是否包含</returns>
-        /// <see cref="AbstractCard.And"/>
-        /// <see cref="AbstractCard.Or"/>
-        public bool HasModifiers(IEnumerable<CardModifier> modifiers, int logic) {
-            var flag = false;
-            switch (logic) {
-                case And: {
-                    foreach (var requirement in modifiers) {
-                        foreach (var _ in Modifiers.Where(modifier => modifier == requirement)) {
-                            flag = true;
-                        }
-
-                        if (!flag) {
-                            break;
-                        }
-                    }
-
-                    break;
-                }
-                case Or: {
-                    foreach (var _ in modifiers.Where(requirement =>
-                        Modifiers.Any(modifier => modifier == requirement))) {
-                        flag = true;
-                    }
-
-                    break;
-                }
-            }
-
-            return flag;
+        /// <param name="modifier">modifier</param>
+        /// <returns></returns>
+        public bool HasModifier(CardModifier modifier) {
+            return Modifier == modifier;
         }
 
         /// <summary>
@@ -196,7 +170,7 @@ namespace cards {
         /// </summary>
         /// <param name="action">行为</param>
         protected void AddToTop(AbstractAction action) {
-            AbstractDungeon.ActionManager.AddAToTop(action);
+            AbstractDungeon.ActionManager.AddToTop(action);
         }
 
         public override bool Equals(object obj) {
@@ -223,6 +197,9 @@ namespace cards {
 
         public enum CardModifier {
             // TODO 其他修饰
+            Upper,
+            Middle,
+            Lower
         }
 
         public enum CardRarity {

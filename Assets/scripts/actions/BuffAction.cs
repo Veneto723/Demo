@@ -1,4 +1,5 @@
 ﻿using System;
+using cards;
 using characters;
 using characters.buffs;
 
@@ -15,8 +16,8 @@ namespace actions {
         /// <param name="buff">Buff</param>
         /// <param name="isTakeBuff">是否是施加Buff，true：施加，false:消除</param>
         /// <exception cref="ArgumentNullException"></exception>
-        public BuffAction(AbstractCharacter source, AbstractCharacter target, Buff buff, bool isTakeBuff) : base(source,
-            target) {
+        public BuffAction(AbstractCharacter source, AbstractCharacter target, Buff buff, AbstractCard card, bool isTakeBuff) : base(source,
+            target, card) {
             _buff = buff ?? throw new ArgumentNullException(nameof(buff));
             _isTakeBuff = isTakeBuff;
         }

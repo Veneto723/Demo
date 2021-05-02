@@ -138,8 +138,20 @@ namespace characters {
             // TODO unfinished
         }
 
+        /// <summary>
+        /// 根据触发的卡牌类型，决定触发效果。
+        /// </summary>
+        /// <param name="source">卡牌来源</param>
+        /// <param name="sourceCard">打出的卡牌</param>
         public virtual void TriggerPosture(AbstractCharacter source, AbstractCard sourceCard) {
             // TODO unfinished
+            switch (sourceCard.Type) {
+                
+            }
+        }
+
+        public bool CanCounter(AbstractCard card) {
+            return Hand.Obtain(card.Modifier);
         }
 
         /// <summary>

@@ -90,12 +90,9 @@ namespace deck {
         /// <exception cref="ArgumentNullException">检索条件为空异常</exception>
         /// <seealso cref="AbstractCard"/>
         /// <seealso cref="AbstractCard.CardModifier"/>
-        /// <seealso cref="AbstractCard.And"/>
-        /// <seealso cref="AbstractCard.Or"/>
-        public AbstractCard Draw(List<AbstractCard.CardModifier> modifiers, int logic) {
+        public AbstractCard Draw(List<AbstractCard.CardModifier> modifiers) {
             if (_deck.Count <= 0) throw new EmptyDeckException();
-            foreach (var card in _deck.Where(card =>
-                card.HasModifiers(modifiers ?? throw new ArgumentNullException(nameof(modifiers)), logic))) {
+            foreach (var card in _deck.Where(card => card.HasModifier(modifiers))) {
                 _deck.Remove(card);
                 return card;
             }
@@ -143,8 +140,8 @@ namespace deck {
         public void Discard(int index) {
             _deck.RemoveAt(index);
         }
-        
-        
+
+
         /// <summary>
         /// 牌库指定位置追加<code>card</code>。
         /// </summary>

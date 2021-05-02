@@ -3,10 +3,9 @@ using characters;
 using exceptions;
 
 namespace cards.testCards {
-    public class Uppercut : AbstractCard{
-        
+    public class Uppercut : AbstractAttackCard {
         public Uppercut() : base("Uppercut", 2, 4, 1, 1, 4,
-            1, "", "", CardType.Attack, new List<CardModifier>() { },
+            1, "", "", CardModifier.Upper,
             CardRarity.Default, CardTarget.Enemy) { }
 
         protected override void OnUse(AbstractCharacter source, AbstractCharacter target) {
@@ -18,13 +17,13 @@ namespace cards.testCards {
             // 造成伤害
             target.TakeDamage(damage, 0);
         }
-        
-        
-        protected override void AfterUse(AbstractCharacter target, AbstractCharacter source) {
+
+
+        public override void AfterUse(AbstractCharacter target, AbstractCharacter source) {
             try {
                 source.Deck.Draw();
             }
-            catch (EmptyDeckException _) {
+            catch (EmptyDeckException) {
                 source.Grave.ShuffleToDeck(source.Deck);
                 source.Deck.Draw();
             }

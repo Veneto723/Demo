@@ -1,10 +1,12 @@
-﻿using characters;
+﻿using cards;
+using characters;
 
 namespace actions {
     public class DrawAction : AbstractAction {
         private readonly int _draw;
 
-        public DrawAction(AbstractCharacter source, AbstractCharacter target, int draw) : base(source, target) {
+        public DrawAction(AbstractCharacter source, AbstractCharacter target, AbstractCard card, int draw) 
+            : base(source, target, card) {
             _draw = draw;
         }
         

@@ -8,7 +8,7 @@ namespace actions {
         private readonly int _posture;
         
         public PostureAction(AbstractCharacter source, AbstractCharacter target, AbstractCard card, int posture)
-            : base(source, target) {
+            : base(source, target, card) {
             _sourceCard = card;
             _posture = posture;
         }

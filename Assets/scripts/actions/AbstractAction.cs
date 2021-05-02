@@ -3,14 +3,16 @@ using characters;
 
 namespace actions {
     public abstract class AbstractAction {
-        protected AbstractCharacter Source { get; }
-        protected AbstractCharacter Target { get; }
+        public AbstractCharacter Source { get; }
+        public AbstractCharacter Target { get; }
         public AbstractCard.CardTarget CardTarget;
+        public AbstractCard SourceCard { get; }
 
 
-        public AbstractAction(AbstractCharacter source, AbstractCharacter target) {
+        public AbstractAction(AbstractCharacter source, AbstractCharacter target, AbstractCard sourceCard) {
             Source = source;
             Target = target;
+            SourceCard = sourceCard;
         }
 
         public AbstractAction(AbstractCharacter source, AbstractCard.CardTarget target) {
@@ -19,7 +21,11 @@ namespace actions {
         }
 
         public abstract void OnAct();
-        
+
+        public virtual void AfterAct() {
+            SourceCard.AfterUse(Source, Target);
+        }
+
 
     }
 }
