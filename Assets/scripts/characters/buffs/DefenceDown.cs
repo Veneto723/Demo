@@ -11,6 +11,7 @@ namespace characters.buffs {
 
         public override void Escalate(AbstractCharacter source, AbstractCharacter target, int amount, int duration) {
             Amount += Utils.NotNegative(amount);
+            target.Defence -= amount;
         }
     }
 }

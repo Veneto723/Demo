@@ -24,6 +24,8 @@ namespace characters {
             }
         }
 
+        public int Defence { get; set; }
+
         public int Cost {
             get => CurrentCost;
             set => CurrentCost = Utils.NotNegative(value);
@@ -52,6 +54,7 @@ namespace characters {
 
         public AbstractCharacter() {
             HitPoint = 100;
+            Defence = 3;
             Hand = new Hand(this);
             Deck = new Deck(this);
             Grave = new Grave(this);
@@ -62,6 +65,7 @@ namespace characters {
 
         public AbstractCharacter(int hitPoint) {
             HitPoint = hitPoint;
+            Defence = 3;
             Hand = new Hand(this);
             Deck = new Deck(this);
             Grave = new Grave(this);
@@ -94,6 +98,9 @@ namespace characters {
 
             if (!hasBuff) {
                 Buffs.Add(buff);
+                if (buff is DefenceDown) {
+                    Defence -= buff.GetAmount();
+                }
             }
         }
 
@@ -116,8 +123,8 @@ namespace characters {
             // 受击动画
             // 扣血 TODO 伤害减益百分比
             // 防御力为正，则扣除破甲数值。防御力为负，则无视破甲。
-            var finalDefence = Weapon.Defence > 0 ? Utils.NotNegative(Weapon.Defence - defenceIgnore) : Weapon.Defence;
-
+            var tempDefence = Weapon.Defence + Defence;
+            var finalDefence = tempDefence > 0 ? Utils.NotNegative(tempDefence - defenceIgnore) : tempDefence;
             HitPoint -= Utils.NotNegative(damage - finalDefence);
         }
 
@@ -130,6 +137,45 @@ namespace characters {
             // 扣血 
             HitPoint -= Utils.NotNegative(damage);
         }
+
+        /// <summary>
+        /// 计算造成伤害百分比。
+        /// </summary>
+        /// <returns>增幅百分比</returns>
+        public virtual int DealDamagePercent() {
+            var percent = 0;
+            foreach (var currentBuff in Buffs) {
+                switch (currentBuff) {
+                    case Bravery _:
+                        percent += 20;
+                        break;
+                    case Trance _:
+                        percent -= 15;
+                        break;
+                }
+            }
+
+            return percent;
+        }
+        
+        /// <summary>
+        /// 计算受到伤害百分比。
+        /// </summary>
+        /// <returns>增幅百分比</returns>
+        public virtual int TakeDamagePercent() {
+            var percent = 0;
+            foreach (var currentBuff in Buffs) {
+                switch (currentBuff) {
+                    case Vulnerable _:
+                        percent += 15;
+                        break;
+                }
+            }
+
+            return percent;
+        }
+
+
 
         /// <summary>
         /// 处理角色死亡
