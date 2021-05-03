@@ -9,10 +9,9 @@ using utils;
 
 namespace characters {
     public abstract class AbstractCharacter {
-        // TODO coarse class, need to be refined
 
         private int _hitPoint;
-        private int CurrentCost;
+        private int _currentCost;
         private const int MaxPosture = 10;
         private const int TotalCost = 10;
 
@@ -27,8 +26,8 @@ namespace characters {
         public int Defence { get; set; }
 
         public int Cost {
-            get => CurrentCost;
-            set => CurrentCost = Utils.NotNegative(value);
+            get => _currentCost;
+            set => _currentCost = Utils.NotNegative(value);
         }
 
         public int Posture { get; private set; }
@@ -175,13 +174,29 @@ namespace characters {
             return percent;
         }
 
+        /// <summary>
+        /// 开局回费。
+        /// </summary>
+        public virtual void CostRecover() {
+            if (Weapon == null) return;
+            _currentCost += Weapon.Grip.CostRecovery;
+            _currentCost = Utils.Below(_currentCost, TotalCost);
+        }
+
+        /// <summary>
+        /// 判断角色是否可操作
+        /// </summary>
+        /// <returns></returns>
+        public bool CanMove() {
+            return !Buffs.OfType<Stun>().Any();
+        }
 
 
         /// <summary>
         /// 处理角色死亡
         /// </summary>
-        public virtual void Dying() {
-            // TODO unfinished
+        public virtual bool Dying() {
+            return HitPoint <= 0;
         }
 
         /// <summary>
@@ -190,12 +205,15 @@ namespace characters {
         /// <param name="source">卡牌来源</param>
         /// <param name="sourceCard">打出的卡牌</param>
         public virtual void TriggerPosture(AbstractCharacter source, AbstractCard sourceCard) {
-            // TODO unfinished
-            switch (sourceCard.Type) {
-                
-            }
+            _currentCost -= 2;
+            Hand.DiscardAll();
         }
 
+        /// <summary>
+        /// 判断是否可以进行反击。
+        /// </summary>
+        /// <param name="card"></param>
+        /// <returns></returns>
         public bool CanCounter(AbstractCard card) {
             return Hand.Obtain(card.Modifier);
         }

@@ -9,6 +9,8 @@ using utils;
 namespace cards {
     public abstract class AbstractCard {
 
+        protected const int Depends = -1; 
+
         private int _baseCost;
         private int _baseDamage;
         private int _baseHeal;
@@ -132,7 +134,7 @@ namespace cards {
         /// <param name="target">受影响对象</param>
         /// <returns></returns>
         public virtual bool CanUse(AbstractCharacter source, AbstractCharacter target) {
-            return Cost <= source.Cost;
+            return Cost <= source.Cost && source.CanMove();
         }
 
         public bool HasModifier(IEnumerable<CardModifier> modifiers) {
@@ -184,6 +186,12 @@ namespace cards {
         public override string ToString() {
             return $"#{Name}[{Rarity}] {BaseCost}C => {Description}\n";
         }
+        
+        
+        public string DescriptionConstruct(Dictionary<Keyword, int> dict) {
+            
+            return "";
+        }
 
 
         public enum CardType {
@@ -199,7 +207,8 @@ namespace cards {
             // TODO 其他修饰
             Upper,
             Middle,
-            Lower
+            Lower,
+            Dash
         }
 
         public enum CardRarity {
@@ -216,6 +225,10 @@ namespace cards {
             Enemy, // 单个敌人
             Multi, // 多敌人
             All // 全体敌人
+        }
+
+        public enum Keyword {
+            
         }
     }
 }

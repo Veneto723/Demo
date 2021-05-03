@@ -9,7 +9,7 @@ namespace cards.weapons {
         private int _defence;
         protected AbstractUnit Pommel;
         protected AbstractUnit Blade;
-        protected AbstractUnit Grip;
+        public AbstractUnit Grip { get; protected set; }
         protected AbstractUnit Guard;
 
         protected int BaseDefence {

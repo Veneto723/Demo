@@ -11,6 +11,10 @@ namespace utils {
             return number < 0 ? 0 : number;
         }
 
+        public static int Below(int num, int max) {
+            return Math.Min(num, max);
+        }
+
         public static double Floor(double number) {
             return Math.Floor(number);
         }
