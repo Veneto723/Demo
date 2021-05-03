@@ -1,5 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using cards;
+﻿using cards;
 using characters;
 
 namespace actions {
