@@ -7,7 +7,7 @@ namespace dungeon {
 
         public bool IsPlayerTurn { get; }
 
-        public BattleRoom(AbstractCharacter enemy) : base(RoomType.Battle) {
+        public BattleRoom(AbstractMonster enemy) : base(RoomType.Battle) {
             IsPlayerTurn = true;
             Enemy = enemy;
         }

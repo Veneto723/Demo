@@ -5,9 +5,9 @@ using characters.buffs;
 namespace cards {
     public class AbstractAttackCard : AbstractCard {
         public AbstractAttackCard(string name, int baseCost, int baseDamage, int baseMagicNumber, int bonusCost,
-            string img, Dictionary<Keyword, int> keywords, CardModifier modifier, CardRarity rarity,
+            string img, Dictionary<Keyword, int> keywords, AbstractCharacter owner, CardModifier modifier, CardRarity rarity,
             CardTarget target)
-            : base(name, baseCost, bonusCost, baseDamage, baseMagicNumber, img, keywords,
+            : base(name, baseCost, bonusCost, baseDamage, baseMagicNumber, img, keywords, owner,
                 CardType.Attack, modifier, rarity, target) { }
 
         public override void OnUse(AbstractCharacter source, AbstractCharacter target) {

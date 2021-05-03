@@ -6,7 +6,7 @@ namespace characters.buffs {
         public Bleeding() { }
 
         public Bleeding(AbstractCharacter source, AbstractCharacter target, int amount, int duration)
-            : base("Bleeding", "Lose certain hp per turn", Buff.BuffType.Debuff, amount, duration, source, target) { }
+            : base("Bleeding", "Lose certain hp per turn", BuffType.Debuff, amount, duration, source, target) { }
 
         public override void OnUse(AbstractCharacter source, AbstractCharacter target) {
             target.TakeRealDamage(Amount);

@@ -9,7 +9,6 @@ using utils;
 
 namespace cards {
     public abstract class AbstractCard {
-        protected const int Depends = -1;
 
         private int _baseCost;
         private int _baseDamage;
@@ -62,15 +61,15 @@ namespace cards {
         public CardModifier Modifier { get; }
         public CardRarity Rarity { get; }
         public CardTarget Target { get; }
-
         public Chain Chain { get; set; }
+        public AbstractCharacter Owner { get; }
 
 
         /// <summary>
         /// 攻击类卡牌使用构造函数
         /// </summary>
         protected AbstractCard(string name, int baseCost, int bonusCost, int baseDamage, int baseMagicNumber,
-            string img, Dictionary<Keyword, int> keywords,
+            string img, Dictionary<Keyword, int> keywords, AbstractCharacter owner,
             CardType type, CardModifier modifier, CardRarity rarity, CardTarget target) {
             Name = name ?? throw new ArgumentNullException(nameof(name));
             BaseCost = baseCost;

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
@@ -71,10 +70,7 @@
     <Compile Include="Assets\scripts\cards\AbstractCard.cs" />
     <Compile Include="Assets\scripts\cards\AbstractSkillCard.cs" />
     <Compile Include="Assets\scripts\cards\Chain.cs" />
-    <Compile Include="Assets\scripts\cards\testCards\CherryBlossom.cs" />
-    <Compile Include="Assets\scripts\cards\testCards\CutBack.cs" />
     <Compile Include="Assets\scripts\cards\testCards\Strike.cs" />
-    <Compile Include="Assets\scripts\cards\testCards\WaterMoon.cs" />
     <Compile Include="Assets\scripts\cards\weapons\AbstractUnit.cs" />
     <Compile Include="Assets\scripts\cards\weapons\AbstractWeapon.cs" />
     <Compile Include="Assets\scripts\cards\weapons\testUnits\TestBlade.cs" />
@@ -106,6 +102,7 @@
     <Compile Include="Assets\scripts\dungeon\AbstractRoom.cs" />
     <Compile Include="Assets\scripts\dungeon\BattleRoom.cs" />
     <Compile Include="Assets\scripts\exceptions\EmptyDeckException.cs" />
+    <Compile Include="Assets\scripts\instances\CardInstance.cs" />
     <Compile Include="Assets\scripts\Test.cs" />
     <Compile Include="Assets\scripts\utils\Utils.cs" />
     <Reference Include="UnityEngine.Purchasing">
@@ -684,13 +681,6 @@
     <Reference Include="System.Xml.Serialization">
       <HintPath>F:/Unity/2018.4.34f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
     </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Assets\scripts\actions\CostAction.cs.meta" />
-    <Content Include="Assets\scripts\cards\Chain.cs.meta" />
-    <Content Include="Assets\scripts\characters\buffs\Hard.cs.meta" />
-    <Content Include="Assets\scripts\characters\buffs\Unbalanced.cs.meta" />
-    <Content Include="Assets\scripts\Test.cs.meta" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

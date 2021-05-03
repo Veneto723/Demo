@@ -7,7 +7,7 @@ namespace dungeon {
         public RoomType Type { get; }
 
         public AbstractCharacter Player { get; set; }
-        public AbstractCharacter Enemy { get; set; }
+        public AbstractMonster Enemy { get; set; }
 
         public AbstractRoom(RoomType type) {
             Type = type;

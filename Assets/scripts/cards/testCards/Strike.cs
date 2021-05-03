@@ -5,8 +5,8 @@ using characters.buffs;
 
 namespace cards.testCards {
     public class Strike : AbstractAttackCard {
-        public Strike() : base("Strike", 1, 4, 1, 0, "",
-            new Dictionary<Keyword, int> {{Keyword.Deal, 4}, {Keyword.Vulnerable, 1}}, CardModifier.Dash,
+        public Strike(AbstractCharacter owner) : base("Strike", 1, 4, 1, 0, "",
+            new Dictionary<Keyword, int> {{Keyword.Deal, 4}, {Keyword.Vulnerable, 1}}, owner, CardModifier.Dash,
             CardRarity.Starter, CardTarget.Enemy) { }
 
         public override void OnUse(AbstractCharacter source, AbstractCharacter target) {
