@@ -70,5 +70,10 @@ namespace deck {
         public void DiscardAll() {
             _deck.Clear();
         }
+
+        public int RandomDiscard()
+        {
+            return _deck.Count;
+        }
     }
 }
