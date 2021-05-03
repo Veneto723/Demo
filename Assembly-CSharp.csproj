@@ -63,6 +63,7 @@
     <Compile Include="Assets\scripts\actions\BuffAction.cs" />
     <Compile Include="Assets\scripts\actions\CostAction.cs" />
     <Compile Include="Assets\scripts\actions\DamageAction.cs" />
+    <Compile Include="Assets\scripts\actions\DiscardAction.cs" />
     <Compile Include="Assets\scripts\actions\DrawAction.cs" />
     <Compile Include="Assets\scripts\actions\DrawWeaponAction.cs" />
     <Compile Include="Assets\scripts\actions\PostureAction.cs" />
@@ -70,7 +71,10 @@
     <Compile Include="Assets\scripts\cards\AbstractCard.cs" />
     <Compile Include="Assets\scripts\cards\AbstractSkillCard.cs" />
     <Compile Include="Assets\scripts\cards\Chain.cs" />
+    <Compile Include="Assets\scripts\cards\testCards\CherryBlossom.cs" />
+    <Compile Include="Assets\scripts\cards\testCards\CutBack.cs" />
     <Compile Include="Assets\scripts\cards\testCards\Strike.cs" />
+    <Compile Include="Assets\scripts\cards\testCards\WaterMoon.cs" />
     <Compile Include="Assets\scripts\cards\weapons\AbstractUnit.cs" />
     <Compile Include="Assets\scripts\cards\weapons\AbstractWeapon.cs" />
     <Compile Include="Assets\scripts\cards\weapons\testUnits\TestBlade.cs" />
