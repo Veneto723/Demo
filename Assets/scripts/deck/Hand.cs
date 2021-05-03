@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Blade.cards.weapons;
 using cards;
 using cards.weapons;
 using characters;
+
 
 namespace deck {
     public class Hand : Deck {
@@ -71,9 +73,11 @@ namespace deck {
             _deck.Clear();
         }
 
-        public int RandomDiscard()
+        public void RandomDiscard()
         {
-            return _deck.Count;
+            var random = new Random();
+            var discardInd = random.Next(_deck.Count);
+            Discard(discardInd);
         }
     }
 }
