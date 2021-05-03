@@ -13,7 +13,7 @@ namespace actions {
         
         public override void OnAct() {
             for (var i = 0; i < _discard; i++) {
-                Target.Hand.RandomDiscard();
+                Target.Hand.RandomDiscard()
             }
         }
     }

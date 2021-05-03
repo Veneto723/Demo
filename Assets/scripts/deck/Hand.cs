@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Blade.cards.weapons;
 using cards;
 using cards.weapons;
 using characters;

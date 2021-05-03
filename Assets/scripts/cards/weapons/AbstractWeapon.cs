@@ -88,7 +88,7 @@ namespace cards.weapons {
         /// </summary>
         /// <param name="source">发起方</param>
         /// <param name="target">受影响对象</param>
-        protected override void OnUse(AbstractCharacter source, AbstractCharacter target) {
+        public override void OnUse(AbstractCharacter source, AbstractCharacter target) {
             source.UnEquip(source.Weapon);
             source.Equip(this);
         }

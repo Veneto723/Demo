@@ -168,6 +168,9 @@ namespace characters {
                     case Vulnerable _:
                         percent += 15;
                         break;
+                    case Hard _:
+                        percent -= 20;
+                        break;
                 }
             }
 
@@ -179,7 +182,15 @@ namespace characters {
         /// </summary>
         public virtual void CostRecover() {
             if (Weapon == null) return;
-            _currentCost += Weapon.Grip.CostRecovery;
+            CostRecover(Weapon.Grip.CostRecovery);
+        }
+        
+        
+        /// <summary>
+        /// 回费。
+        /// </summary>
+        public virtual void CostRecover(int cost) {
+            _currentCost += cost;
             _currentCost = Utils.Below(_currentCost, TotalCost);
         }
 
