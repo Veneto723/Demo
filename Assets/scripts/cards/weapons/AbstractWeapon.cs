@@ -94,7 +94,7 @@ namespace cards.weapons {
         }
 
         public override string ToString() {
-            return $"#{Name}[{Rarity}] {BaseCost}C {CostRecovery}CR {Damage}Damage {Defence}Defence";
+            return $"#{Name}[{Rarity}] {BaseCost}C {CostRecovery}CR {Damage}Heal {Defence}Defence";
         }
     }
 }

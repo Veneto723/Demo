@@ -27,7 +27,7 @@ namespace actions {
                     if (room.IsPlayerTurn) {
                         var counterCard = (AbstractAttackCard) room.Enemy.ChooseCounterCard(action.SourceCard);
                         // 展示打出手牌
-                        // counterCard.Damage
+                        // counterCard.Heal
                     }
                 }
             }

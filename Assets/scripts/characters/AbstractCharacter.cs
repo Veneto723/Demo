@@ -11,6 +11,7 @@ namespace characters {
     public abstract class AbstractCharacter {
 
         private int _hitPoint;
+        private int _maxHitPoint;
         private int _currentCost;
         private const int MaxPosture = 10;
         private const int TotalCost = 10;
@@ -18,7 +19,7 @@ namespace characters {
         public int HitPoint {
             get => _hitPoint;
             set {
-                _hitPoint = Utils.NotNegative(value);
+                _hitPoint = Utils.Below(Utils.NotNegative(value), _maxHitPoint);
                 if (_hitPoint == 0) Dying();
             }
         }
@@ -53,6 +54,7 @@ namespace characters {
 
         public AbstractCharacter() {
             HitPoint = 100;
+            _maxHitPoint = HitPoint;
             Defence = 3;
             Hand = new Hand(this);
             Deck = new Deck(this);
@@ -64,6 +66,7 @@ namespace characters {
 
         public AbstractCharacter(int hitPoint) {
             HitPoint = hitPoint;
+            _maxHitPoint = HitPoint;
             Defence = 3;
             Hand = new Hand(this);
             Deck = new Deck(this);
@@ -125,6 +128,15 @@ namespace characters {
             var tempDefence = Weapon.Defence + Defence;
             var finalDefence = tempDefence > 0 ? Utils.NotNegative(tempDefence - defenceIgnore) : tempDefence;
             HitPoint -= Utils.NotNegative(damage - finalDefence);
+        }
+        
+        /// <summary>
+        /// 角色受击方法。内会检测伤害数值。
+        /// </summary>
+        /// <param name="heal">将要受击数值</param>
+        public virtual void Heal(int heal) {
+            // 回血动画
+            HitPoint += Utils.NotNegative(heal);
         }
 
         /// <summary>

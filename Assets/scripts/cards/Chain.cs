@@ -96,7 +96,7 @@ namespace cards {
                         // return 
                         break;
                     case AbstractCard.Keyword.Bleeding:
-                        return new BuffAction(source, target, new Bleeding(source, target, dict[key], dict[key]), card, true);
+                        return new BuffAction(source, target, new Bleeding(source, target, dict[key]), card, true);
                     case AbstractCard.Keyword.Bravery:
                         return new BuffAction(source, target, new Bravery(source, target, dict[key]), card, true);
                     case AbstractCard.Keyword.DefenceDown:

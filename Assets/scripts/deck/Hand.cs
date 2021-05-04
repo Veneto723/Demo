@@ -53,6 +53,15 @@ namespace deck {
         }
 
         /// <summary>
+        /// 判断手牌不含有<value>type</value>的卡牌
+        /// </summary>
+        /// <param name="type">卡牌类型</param>
+        /// <returns></returns>
+        public bool NotObtain(AbstractCard.CardType type) {
+            return _deck.All(card => !card.HasType(type));
+        }
+
+        /// <summary>
         /// 返回手牌数量
         /// </summary>
         /// <returns></returns>
