@@ -9,15 +9,10 @@ using characters;
 namespace deck {
     public class Hand : Deck {
 
-        private List<AbstractCard> _deckCopy;
 
-        public Hand(AbstractCharacter owner) : base(owner) {
-            _deckCopy = _deck;
-        }
+        public Hand(AbstractCharacter owner) : base(owner) { }
 
-        public Hand(AbstractCharacter owner, List<AbstractCard> deck) : base(owner, deck) {
-            _deckCopy = _deck;
-        }
+        public Hand(AbstractCharacter owner, List<AbstractCard> deck) : base(owner, deck) { }
 
         /// <summary>
         /// 往手牌中添加手牌。多余手牌上限将弃牌。
@@ -46,6 +41,23 @@ namespace deck {
         /// <returns></returns>
         public bool Obtain(AbstractCard.CardModifier modifier) {
             return _deck.Any(card => card.HasModifier(modifier));
+        }
+
+        /// <summary>
+        /// 判断手牌是否只含有<value>type</value>的卡牌
+        /// </summary>
+        /// <param name="type">卡牌类型</param>
+        /// <returns></returns>
+        public bool OnlyObtain(AbstractCard.CardType type) {
+            return _deck.All(card => card.Type == type);
+        }
+
+        /// <summary>
+        /// 返回手牌数量
+        /// </summary>
+        /// <returns></returns>
+        public int Count() {
+            return _deck.Count;
         }
 
         /// <summary>

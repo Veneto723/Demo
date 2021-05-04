@@ -166,6 +166,15 @@ namespace cards {
         }
 
         /// <summary>
+        /// 判断该卡牌是否是相应类型。
+        /// </summary>
+        /// <param name="type">卡牌类型</param>
+        /// <returns>是否包含</returns>
+        public bool HasType(CardType type) {
+            return type == Type;
+        }
+        
+        /// <summary>
         /// 添加行为至ActionManager队列尾。
         /// </summary>
         /// <param name="action">行为</param>

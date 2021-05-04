@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using characters;
+using characters.buffs;
 
 namespace dungeon {
     public class BattleRoom : AbstractRoom {
@@ -19,9 +20,11 @@ namespace dungeon {
             _isPlayerTurn = !_isPlayerTurn;
             if (_isPlayerTurn) {
                 Player.CostRecover();
+                Player.DispelBuff(new Combo());
             }
             else {
                 Enemy.CostRecover();
+                Enemy.DispelBuff(new Combo());
             }
         }
 
